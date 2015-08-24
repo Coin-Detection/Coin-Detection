@@ -42,7 +42,7 @@ int main(int argc, char** argv)
       circles, // storage
       CV_HOUGH_GRADIENT, // method - ?
       1, // depths
-      src_gray.rows // minimal distance between objects
+      src_gray.rows/8 // minimal distance between objects
       );
 
   /// Draw the circles detected
