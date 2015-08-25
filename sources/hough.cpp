@@ -42,7 +42,7 @@ public:
         }
         std::cout<<"number of coins:\t"<<circles.size()<<std::endl;
         /// Show your results
-        imshow( "Hough Circle Transform Demo", image );
+        imshow( "Hough Circle Transform", image );
         waitKey(0);
     }
 
