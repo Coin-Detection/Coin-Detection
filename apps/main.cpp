@@ -31,7 +31,7 @@ int main(int argc, char** argv)
     if (!image_file.empty()) {
         src = imread( image_file );
         CV_Assert( !src.empty() );
-    }/*
+    }
     else if (camera) {
         VideoCapture cap(0);
         Mat image_obj;
@@ -50,7 +50,7 @@ int main(int argc, char** argv)
             if( !image_obj.data || !img_scene.data ) // Проверка наличия информации в матрице изображения
                 std::cout<<"Reading mistake, image_obj or image_scene, No Data"<<std::endl;
 
-
+            resize(img_scene, img_scene, img_scene.size(), 0.5, 0.5);
             //-- Этап 1. Нахождение ключевых точек.
             int minHessian = 400;
 
@@ -149,7 +149,7 @@ int main(int argc, char** argv)
 
             if(waitKey(30) >= 0) break;
         }
-    }*/
+    }
     else if (strike) {
         Mat image_obj;
         std::string image_obj_path;
@@ -158,8 +158,6 @@ int main(int argc, char** argv)
         image_obj=imread(image_obj_path);
         cvtColor(image_obj, image_obj, CV_BGR2GRAY);
         GaussianBlur(image_obj, image_obj, Size(5, 5), 2, 2);
-        Canny(image_obj, image_obj, 0, 50);
-        imshow("Canny's object", image_obj);
         Mat frame;
         frame=imread("rubl.jpg");
         Mat img_scene = frame; 
