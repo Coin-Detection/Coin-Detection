@@ -11,6 +11,8 @@ public:
     virtual int count() = 0;
     virtual void draw() = 0;
     virtual void init(cv::Mat &src) = 0;
+	virtual cv::vector<cv::Vec3f> write_circles() = 0;
+	virtual cv::vector<cv::RotatedRect> write_ellipse() = 0;
 };
 
 cv::Ptr<Detector> detectorCreation ( const std::string &impl_name );

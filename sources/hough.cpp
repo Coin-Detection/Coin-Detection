@@ -45,7 +45,17 @@ public:
         imshow( "Hough Circle Transform Demo", image );
         waitKey(0);
     }
+    
+    cv::vector<cv::Vec3f> write_circles()
+	{
+		return circles;
+	}
 
+    cv::vector<cv::RotatedRect> write_ellipse()
+	{	
+		return cv::vector<cv::RotatedRect> ();	
+	}
+	
 private:
     vector<Vec3f> circles;
     Mat image;
