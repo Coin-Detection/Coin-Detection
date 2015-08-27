@@ -5,7 +5,7 @@ using namespace cv;
 class Threshold : public Detector {
 public:
     Threshold() {};
-   
+    
     void init( Mat &src )
     {
         image = src;
@@ -60,6 +60,7 @@ public:
 
         /// Find the rotated rectangles and ellipses for each contour
         vector<RotatedRect> minRect( contours.size() );
+        vector<RotatedRect> minEllipse( contours.size() );
         for( int i = 0; i < contours.size(); i++ )
         {     
             minRect[i] = minAreaRect( Mat(contours[i]));
@@ -68,7 +69,7 @@ public:
                 double area = cv::contourArea( contours[i]);
                 if ( ( area < 57600 ) && ( area > 300 ) )
                 {
-                      minEllipse.push_back(fitEllipse( Mat(contours[i])));
+                      minEllipse[i] = fitEllipse( Mat(contours[i]) );
                       counter++ ;
                 }
             }
@@ -92,21 +93,10 @@ public:
 
     void draw()
     {}
-    
-    cv::vector<cv::Vec3f> write_circles()
-	{
-		return cv::vector<cv::Vec3f>();
-	}
 
-	cv::vector<cv::RotatedRect> write_ellipse()
-	{
-		return minEllipse;
-	}
-	
 private:
     vector<Vec3f> circles;
     Mat image;
-	vector<RotatedRect> minEllipse;
 };
 
 cv::Ptr<Detector> createDetectorThreshold() 
